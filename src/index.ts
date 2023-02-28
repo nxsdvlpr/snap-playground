@@ -130,6 +130,9 @@ const requestPayment = async (accessToken: string) => {
     },
   }
 
+  console.log('headers:', config.headers)
+  console.log('body:', body)
+
   return axios.post(`${endpoint}/transfer-va/payment/test`,
     body,
     config
@@ -195,7 +198,8 @@ const requestInquiry = async (accessToken: string) => {
     },
   }
 
-
+  console.log('headers:', config.headers)
+  console.log('body:', body)
 
   return axios.post(`${endpoint}/transfer-va/inquiry/test`,
     body,
