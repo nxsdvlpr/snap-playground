@@ -13,7 +13,7 @@ import { formatISO } from 'date-fns'
 const customerPhone = '6281510549695'
 // const endpoint = 'http://localhost:8066/openapi/v1.0'
 const inquiryRequestId = '20230207173714203812040334785983475973'
-const endpoint = 'https://api.rata-pay.com/openapi/v1.0'
+const endpoint = 'https://api-dev.rata-pay.com/openapi/v1.0'
 
 // const credentials = {
 //   name: 'BCA',
@@ -24,11 +24,11 @@ const endpoint = 'https://api.rata-pay.com/openapi/v1.0'
 // }
 
 const credentials = {
-  name: 'TEST',
-  clientId: 'e879138c436831edf198750984a66749',
-  clientSecret: 'd8d2d95a5a7e646b6c6829073aa85ad208c56f4a',
+  name: 'BI',
+  clientId: '7720d0e22779e41aaca4064420bf7448',
+  clientSecret: '7f531f962abec0bdb88eee4602ce9dcc14f04bf2',
   partnerId: '14507',
-  channelId: '95232',
+  channelId: '95233',
 }
 
 const getToken = async (clientId: string) => {
@@ -41,7 +41,7 @@ const getToken = async (clientId: string) => {
 
   const signature = createAsymmetricSignature(
     payload,
-    '../keys/private-key.pem'
+    '../keys.bi/private-key.pem'
   )
 
   console.log('signature: ', signature)
@@ -130,7 +130,7 @@ const requestPayment = async (accessToken: string) => {
     },
   }
 
-  return axios.post(`${endpoint}/transfer-va/payment`,
+  return axios.post(`${endpoint}/transfer-va/payment/test`,
     body,
     config
   )
@@ -195,11 +195,9 @@ const requestInquiry = async (accessToken: string) => {
     },
   }
 
-  const url = `${endpoint}/transfer-va/inquiry`
 
-  console.log('url:', url)
 
-  return axios.post(url,
+  return axios.post(`${endpoint}/transfer-va/inquiry/test`,
     body,
     config
   )
